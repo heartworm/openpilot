@@ -21,6 +21,12 @@ class CarInterface(CarInterfaceBase):
             )
         ]
 
+        ret.wheelbase = 3.2 # m
+        ret.mass = 1859 + (0.84 * 76) + 75 # tare + diesel + driver
+        ret.steerRatio = 1 # unused
+
+        ret.minSteerSpeed = 255
+        ret.stoppingControl = False
         ret.pcmCruise = False
         ret.openpilotLongitudinalControl = True
 
