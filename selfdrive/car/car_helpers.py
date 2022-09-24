@@ -176,7 +176,7 @@ def get_car(logcan, sendcan):
   vin = "VIN"
   source = car.CarParams.FingerprintSource.fixed
   exact_match = True
-  car_fw = None
+  car_fw = []
 
   # candidate, fingerprints, vin, car_fw, source, exact_match = fingerprint(logcan, sendcan)
 
