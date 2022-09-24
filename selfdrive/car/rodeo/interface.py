@@ -1,6 +1,6 @@
 from os import stat
 from typing import List, Tuple
-from selfdrive.car import get_safety_config
+from selfdrive.car import get_safety_config, scale_rot_inertia, scale_tire_stiffness
 from selfdrive.car.interfaces import CarInterfaceBase
 from cereal import car
 from selfdrive.config import Conversions
@@ -22,8 +22,15 @@ class CarInterface(CarInterfaceBase):
         ]
 
         ret.wheelbase = 3.2 # m
+        ret.centerToFront = ret.wheelbase * 0.5
         ret.mass = 1859 + (0.84 * 76) + 75 # tare + diesel + driver
         ret.steerRatio = 1 # unused
+        ret.steerRateCost = 1.0
+        ret.steerActuatorDelay = 0.1  # Default delay, not measured yet
+    
+        ret.tireStiffnessFront, ret.tireStiffnessRear = scale_tire_stiffness(ret.mass, ret.wheelbase, ret.centerToFront,
+                                                                         tire_stiffness_factor=1)
+        ret.rotationalInertia = scale_rot_inertia(ret.mass, ret.wheelbase)
 
         ret.minSteerSpeed = 255
         ret.stoppingControl = False
