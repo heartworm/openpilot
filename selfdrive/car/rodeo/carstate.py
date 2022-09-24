@@ -2,6 +2,7 @@ from selfdrive.car.gm.values import CanBus
 from selfdrive.car.interfaces import CarStateBase, GearShifter
 from opendbc.can.parser import CANParser
 from cereal import car
+from selfdrive.config import Conversions
 
 class CarState(CarStateBase):
     def __init__(self, CP):
@@ -9,7 +10,7 @@ class CarState(CarStateBase):
 
     def update(self, can_parser): 
         ret = car.CarState.new_message()
-        ret.vEgoRaw = can_parser.vl["ECMVehicleSpeed"]["VehicleSpeed"]
+        ret.vEgoRaw = can_parser.vl["ECMVehicleSpeed"]["VehicleSpeed"] * Conversions.MPH_TO_MS
         ret.vEgo, ret.aEgo = self.update_speed_kf(ret.vEgoRaw)
         ret.standstill = ret.vEgoRaw < 0.01
         ret.gearShifter = GearShifter.drive
