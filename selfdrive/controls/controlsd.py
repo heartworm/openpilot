@@ -117,8 +117,8 @@ class Controls:
       self.log_sock = messaging.sub_sock('androidLog')
 
     # wait for one pandaState and one CAN packet
-    print("Waiting for CAN messages...")
-    get_one_can(self.can_sock)
+    # print("Waiting for CAN messages...")
+    # get_one_can(self.can_sock)
 
     self.CI, self.CP, candidate = get_car(self.can_sock, self.pm.sock['sendcan'])
     threading.Thread(target=log_fingerprint, args=[candidate]).start()

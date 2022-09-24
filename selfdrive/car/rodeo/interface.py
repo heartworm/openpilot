@@ -17,7 +17,7 @@ class CarInterface(CarInterfaceBase):
         ret.safetyConfigs = [
             get_safety_config(
                 car.CarParams.SafetyModel.elm327,
-                1  # Connect to OBD port
+                0  # Connect to OBD port
             )
         ]
 
