@@ -16,6 +16,7 @@ class CarState(CarStateBase):
         ret.canValid = True
         return ret
 
+    @staticmethod
     def get_can_parser(car_params):
         signals = [
             ("VehicleSpeed", "ECMVehicleSpeed", 0)
