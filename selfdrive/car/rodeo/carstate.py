@@ -9,7 +9,7 @@ class CarState(CarStateBase):
 
     def update(self, can_parser): 
         ret = car.CarState.new_message()
-        ret.vEgoRaw = can_parser.vl["VehicleSpeed"]
+        ret.vEgoRaw = can_parser.vl["ECMVehicleSpeed"]["VehicleSpeed"]
         ret.vEgo, ret.aEgo = self.update_speed_kf(ret.vEgoRaw)
         ret.standstill = ret.vEgoRaw < 0.01
         ret.gearShifter = GearShifter.drive
