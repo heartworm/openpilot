@@ -171,7 +171,7 @@ def fingerprint(logcan, sendcan):
 
 
 def get_car(logcan, sendcan):
-  candidate = "rodeo"
+  candidate = "RODEO"
   fingerprints = gen_empty_fingerprint()
   vin = "VIN"
   source = car.CarParams.FingerprintSource.fixed
@@ -185,8 +185,6 @@ def get_car(logcan, sendcan):
   #   candidate = "mock"
 
   # CarInterface, CarController, CarState = interfaces[candidate]
-
-  candidate = "rodeo"
 
   CarInterface, CarController, CarState = interfaces[candidate]
   car_params = CarInterface.get_params(candidate, fingerprints, car_fw)
