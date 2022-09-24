@@ -22,6 +22,4 @@ class CarState(CarStateBase):
             ("VehicleSpeed", "ECMVehicleSpeed", 0)
         ]
 
-        checks = []
-
-        return CANParser("rodeo", signals, checks, CanBus.POWERTRAIN)
+        return CANParser("rodeo", signals, bus = 1, enforce_checks = False)
